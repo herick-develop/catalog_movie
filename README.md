@@ -12,8 +12,6 @@ Este projeto é uma implementação de uma API RestFul em JSON para um catálogo
 - **Swagger**: Para documentação automática da API.
 - **Docker**: Para conteinerização e facilitar o ambiente de desenvolvimento e produção.
 
-### Estrutura do Projeto
-
 
 ### Funcionalidades
 
@@ -26,16 +24,11 @@ Este projeto é uma implementação de uma API RestFul em JSON para um catálogo
 
 Este projeto foi implementado seguindo as melhores práticas de engenharia de software e engenharia de qualidade, utilizando ferramentas apropriadas para cada tarefa. A implementação inclui testes automatizados para garantir a estabilidade e funcionalidade do sistema.
 
-#### Deploy
+### Crie sua imagem docker
+- ** docker build -t $nome_da_sua_imagem -f Dockerfile.yaml . --no-cache
 
-O projeto foi deployado na plataforma [inserir nome da plataforma], disponível em [inserir link para o deploy].
+### Inicie seu container ! lembre de ter instanciado o postgres e o redis
+- ** docker run -d -p 3000:3000 --name catalog_movie -e POSTGRES_USER="admin" -e POSTGRES_HOST="seu_ip" -e POSTGRES_PASSWORD="admin" -e POSTGRES_DATABASE="movies" -e POSTGRES_PORT="5432" -e REDIS_HOST="seu_ip" -e REDIS_PORT="6379" -e REDIS_DB="0" $nome_da_sua_imagem/catalog_movie:latest
 
-### Sobre o Desenvolvedor
-
-Este projeto foi desenvolvido por [seu nome], um desenvolvedor com experiência em [listar suas experiências relevantes, por exemplo: Node.js, TypeScript, Nest.js, Docker, PostgreSQL, Redis, entre outros]. Sempre buscando aprender e aplicar novas tecnologias para melhorar continuamente a qualidade e eficiência dos projetos.
-
-Para mais detalhes, consulte a documentação completa da API no Swagger e o código-fonte disponível no repositório [link do seu repositório].
-
----
-
-Este README serve como um guia de implementação e apresentação do projeto desenvolvido, demonstrando a capacidade de criar uma solução robusta e escalável utilizando as tecnologias exigidas no desafio.
+### Inicie a partir do meu repositório docker
+- ** docker run -d -p 3000:3000 --name catalog_movie -e POSTGRES_USER="admin" -e POSTGRES_HOST="seu_ip" -e POSTGRES_PASSWORD="admin" -e POSTGRES_DATABASE="movies" -e POSTGRES_PORT="5432" -e REDIS_HOST="seu_ip" -e REDIS_PORT="6379" -e REDIS_DB="0" herickdevelop/catalog_movie:latest
