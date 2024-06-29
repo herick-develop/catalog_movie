@@ -33,5 +33,5 @@ Este projeto foi implementado seguindo as melhores práticas de engenharia de so
 ### Inicie a partir do meu repositório docker
 - ** docker run -d -p 3000:3000 --name catalog_movie -e POSTGRES_USER="admin" -e POSTGRES_HOST="seu_ip" -e POSTGRES_PASSWORD="admin" -e POSTGRES_DATABASE="movies" -e POSTGRES_PORT="5432" -e REDIS_HOST="seu_ip" -e REDIS_PORT="6379" -e REDIS_DB="0" herickdevelop/catalog_movie:latest
 
-### Inicie Rapidamente todas as dependencias com docker-composer
+### Inicie Rapidamente com todas as dependencias utilizando docker-composer
 - ** docker compose -f docker-composer.yaml up -d
