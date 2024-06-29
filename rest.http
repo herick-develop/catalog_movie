@@ -1,0 +1,79 @@
+@baseUrl = http://localhost:3000
+
+@idMovie = {{ createMovie.response.body.id }}
+
+@acessToken = {{ login.response.body.access_token }}
+
+###
+
+# @name login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "john",
+  "password": "senha"
+}
+
+###
+
+
+# @name listAllMovies
+GET {{baseUrl}}/movies
+Authorization: Bearer {{acessToken}}
+###
+
+# @name listOneMovie
+GET {{baseUrl}}/movies/{{idMovie}}
+Authorization: Bearer {{acessToken}}
+###
+GET {{baseUrl}}/movies/10
+Authorization: Bearer {{acessToken}}
+
+###
+
+# @name createMovie
+POST {{baseUrl}}/movies/create
+Content-Type: application/json
+Authorization: Bearer {{acessToken}}
+
+{
+  "title": "Inception4",
+  "description": "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
+  "release_date": "2010-07-16",
+  "duration": 148,
+  "genre": "Science Fiction",
+  "director": "Christopher Nolan",
+  "rating": 8.8,
+  "poster_url": "htts://example.com/inception.jpg"
+}
+
+###
+
+# @name updateOneMovie
+PATCH {{baseUrl}}/movies/update/{{idMovie}}
+Content-Type: application/json
+Authorization: Bearer {{acessToken}}
+
+{
+  "title": "Inception11"
+}
+
+###
+PATCH {{baseUrl}}/movies/update/10
+Content-Type: application/json
+Authorization: Bearer {{acessToken}}
+
+{
+  "title": "Inception10"
+}
+###
+
+# @name deleteOneMovie
+DELETE {{baseUrl}}/movies/delete/{{idMovie}}
+Authorization: Bearer {{acessToken}}
+###
+DELETE {{baseUrl}}/movies/delete/19
+Authorization: Bearer {{acessToken}}
+
+###
