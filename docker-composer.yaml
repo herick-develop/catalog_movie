@@ -1,0 +1,78 @@
+version: '3.9'
+
+services:
+
+  redis:
+    restart: always
+    container_name: redis-catalog-movies
+    image: redis
+    volumes:
+      - ./data/redis:/data
+    ports:
+      - "6379:6379"
+    expose:
+      - 6379
+    networks:
+      - catalog_movie-network
+
+  postgres:
+    container_name: pg-catalog-movies
+    image: postgres
+    restart: always
+    shm_size: 128mb
+    volumes:
+      - /var/lib/postgresql/data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: movies
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
+      PGDATA: /var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    expose:
+      - 5432
+    networks:
+      - catalog_movie-network
+
+  catalog_movie:
+    image: herickdevelop/catalog_movie:latest
+    container_name: catalog_movie
+    ports:
+      - "3000:3000"
+    expose:
+      - 3000
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DATABASE=movies
+      - POSTGRES_PORT=5432
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_DB=0
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - catalog_movie-network
+
+  migrations:
+    image: herickdevelop/catalog_movie:latest
+    container_name: migrations
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DATABASE=movies
+      - POSTGRES_PORT=5432
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_DB=0
+    depends_on:
+      - catalog_movie
+    entrypoint: ["npm", "run", "migration:run"]
+    networks:
+      - catalog_movie-network
+
+networks:
+  catalog_movie-network:
