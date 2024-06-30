@@ -28,6 +28,9 @@ docker build -t nome_da_sua_imagem -f Dockerfile.yaml . --no-cache sh
 ```
 
 ### 2. Inicie seu Container
+ ! Requisitos
+ - postgresDB
+ - redis
 
 ```sh
 docker run -d -p 3000:3000 --name catalog_movie \
@@ -45,6 +48,9 @@ docker run -d -p 3000:3000 --name catalog_movie \
 ```
 
 ### Inicie a partir do meu repositório Docker
+ ! Requisitos
+ - postgresDB
+ - redis
 
 ```sh
 docker run -d -p 3000:3000 --name catalog_movie \
