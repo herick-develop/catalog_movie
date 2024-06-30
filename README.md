@@ -25,13 +25,13 @@ Este projeto é uma implementação de uma API RestFul em JSON para um catálogo
 Este projeto foi implementado seguindo as melhores práticas de engenharia de software e engenharia de qualidade, utilizando ferramentas apropriadas para cada tarefa. A implementação inclui testes automatizados para garantir a estabilidade e funcionalidade do sistema.
 
 ### Crie sua imagem docker
-- ** docker build -t $nome_da_sua_imagem -f Dockerfile.yaml . --no-cache
+- ** docker build -t nome_da_sua_imagem -f Dockerfile.yaml . --no-cache
 
 ### Inicie seu container ! lembre de ter instanciado o postgres e o redis
-- ** docker run -d -p 3000:3000 --name catalog_movie -e POSTGRES_USER="admin" -e POSTGRES_HOST="seu_ip" -e POSTGRES_PASSWORD="admin" -e POSTGRES_DATABASE="movies" -e POSTGRES_PORT="5432" -e REDIS_HOST="seu_ip" -e REDIS_PORT="6379" -e REDIS_DB="0" $nome_da_sua_imagem/catalog_movie:latest
+- ** docker run -d -p 3000:3000 --name catalog_movie -e POSTGRES_USER="admin" -e POSTGRES_HOST="postgres" -e POSTGRES_PASSWORD="admin" -e POSTGRES_DATABASE="movies" -e POSTGRES_PORT="5432" -e REDIS_HOST="redis" -e REDIS_PORT="6379" -e REDIS_DB="0" --network catalog_movie-main_catalog_movie-network $nome_da_sua_imagem:latest sh -c "npm run migration:run && npm run start:prod"
 
 ### Inicie a partir do meu repositório docker
-- ** docker run -d -p 3000:3000 --name catalog_movie -e POSTGRES_USER="admin" -e POSTGRES_HOST="seu_ip" -e POSTGRES_PASSWORD="admin" -e POSTGRES_DATABASE="movies" -e POSTGRES_PORT="5432" -e REDIS_HOST="seu_ip" -e REDIS_PORT="6379" -e REDIS_DB="0" herickdevelop/catalog_movie:latest
+- ** docker run -d -p 3000:3000 --name catalog_movie -e POSTGRES_USER="admin" -e POSTGRES_HOST="postgres" -e POSTGRES_PASSWORD="admin" -e POSTGRES_DATABASE="movies" -e POSTGRES_PORT="5432" -e REDIS_HOST="redis" -e REDIS_PORT="6379" -e REDIS_DB="0" --network catalog_movie-main_catalog_movie-network herickdevelop/catalog_movie:latest sh -c "npm run migration:run && npm run start:prod"
 
 ### Inicie Rapidamente com todas as dependencias utilizando docker-composer
 - ** docker compose -f docker-composer.yaml up -d
