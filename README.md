@@ -31,7 +31,7 @@ Este projeto foi implementado seguindo as melhores práticas de engenharia de so
 docker build -t nome_da_sua_imagem -f Dockerfile.yaml . --no-cache sh
 ```
 
-### 2. Inicie se Container
+### 2. Inicie seu Container
 
 ```sh
 docker run -d -p 3000:3000 --name catalog_movie \
