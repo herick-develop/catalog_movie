@@ -53,11 +53,11 @@ docker run -d -p 3000:3000 --name catalog_movie \
 ```sh
 docker run -d -p 3000:3000 --name catalog_movie \
   -e POSTGRES_USER="admin" \
-  -e POSTGRES_HOST="seu_ip" \
+  -e POSTGRES_HOST="postgres" \
   -e POSTGRES_PASSWORD="admin" \
   -e POSTGRES_DATABASE="movies" \
   -e POSTGRES_PORT="5432" \
-  -e REDIS_HOST="seu_ip" \
+  -e REDIS_HOST="redis" \
   -e REDIS_PORT="6379" \
   -e REDIS_DB="0" \
   --network catalog_movie-network \
