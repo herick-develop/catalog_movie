@@ -65,6 +65,7 @@ docker run -d -p 3000:3000 --name catalog_movie \
 ```
 
 ### Inicie rapidamente com todas as dependências utilizando Docker Compose
+
 ```sh
-docker-compose -f docker-compose.yaml up -d
+docker compose -f docker-compose.yaml up -d
 ```
