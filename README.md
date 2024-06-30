@@ -19,10 +19,6 @@ Este projeto é uma implementação de uma API RestFul em JSON para um catálogo
 - **Validação de Dados**: Validação de entrada em todos os endpoints para garantir integridade dos dados.
 - **Documentação Swagger**: API documentada automaticamente para facilitar o uso e entendimento.
 
-## Implementação e Deploy
-
-Este projeto foi implementado seguindo as melhores práticas de engenharia de software e engenharia de qualidade, utilizando ferramentas apropriadas para cada tarefa. A implementação inclui testes automatizados para garantir a estabilidade e funcionalidade do sistema.
-
 ## Iniciando com Docker
 
 ### 1. Crie sua imagem Docker
