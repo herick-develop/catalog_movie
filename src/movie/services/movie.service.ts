@@ -55,6 +55,7 @@ export class MovieService {
 
   async remove(id: number): Promise<{ message: string }> {
     const cacheKey = `movie:${id}:data`;
+    const cacheKeyAll = 'movies:data';
 
     try {
       const movieToRemove = await this.findOne(id);
@@ -62,6 +63,7 @@ export class MovieService {
       await this.movieRepository.remove(movieToRemove);
 
       await this.cacheRepository.delete(cacheKey);
+      await this.cacheRepository.delete(cacheKeyAll);
 
       return { message: `Movie with ID ${id} has been successfully removed` };
     } catch (error) {
@@ -90,6 +92,7 @@ export class MovieService {
 
   async update(id: number, updateMovieDto: MovieBodySchema): Promise<{message: string}> {
     const cacheKey = `movie:${id}:data`;
+    const cacheKeyAll = 'movies:data';
     try {
       const movieToUpdate = await this.findOne(id);
   
@@ -102,6 +105,7 @@ export class MovieService {
       await this.movieRepository.save(movieToUpdate);
 
       await this.cacheRepository.delete(cacheKey);
+      await this.cacheRepository.delete(cacheKeyAll);
   
       return {message: `Movie #${id} updated with success`};
     } catch (error) {
