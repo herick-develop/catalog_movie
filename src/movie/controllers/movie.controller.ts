@@ -54,7 +54,16 @@ export class MovieController {
 
   @Patch('/update/:id')
   @ApiParam({name: 'id', example: 1})
-  @ApiParam({name: 'title', example: 'New title', type: 'string'})
+  @ApiBody({ type: MovieDto,
+    examples: {
+      example1: {
+        summary: 'Update movie title',
+        value: {
+          title: 'new Title'
+        },
+      },
+    },
+  })
   @UsePipes(new ZodValidationPipe(movieBodySchema))
   async update(@Param('id') id: number, @Body() updateMovieDto: MovieBodySchema) {
     return this.moviesService.update(id, updateMovieDto);
